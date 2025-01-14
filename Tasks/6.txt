@@ -1,0 +1,77 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+
+public class AdventureGame : MonoBehaviour
+{
+
+    static void Main(string[] args)
+    {
+        // لیست اشیای گمشده
+        List<string> lostItems = new List<string> { "Key", "Book", "Phone", "Wallet" };
+        // لیست اشیای پیدا شده
+        List<string> foundItems = new List<string>();
+
+        int attempts = 5; // تعداد تلاش‌های مجاز
+
+        Console.WriteLine("Welcome to the Lost Object Search Game!");
+        Console.WriteLine("You need to find the following items: Key, Book, Phone, Wallet");
+        Console.WriteLine($"You have {attempts} attempts. Good luck!");
+
+        while (attempts > 0 && foundItems.Count < lostItems.Count)
+        {
+            Console.Write("\nEnter the name of an item: ");
+            string input = Console.ReadLine();
+
+            bool found = false;
+
+            foreach (string item in lostItems)
+            {
+                if (item.Equals(input, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!foundItems.Contains(item))
+                    {
+                        foundItems.Add(item);
+                        Console.WriteLine($"You found the {item}!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You already found the {item}.");
+                    }
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Item not found in the list of missing objects.");
+            }
+
+            attempts--;
+            Console.WriteLine($"Attempts left: {attempts}");
+        }
+
+        if (foundItems.Count == lostItems.Count)
+        {
+            Console.WriteLine("\nCongratulations! You found all the missing items!");
+        }
+        else
+        {
+            Console.WriteLine("\nGame over! You ran out of attempts.");
+            Console.WriteLine("Items you didn't find:");
+            foreach (string item in lostItems)
+            {
+                if (!foundItems.Contains(item))
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+    }
+}
+
+
+(تسک۶)

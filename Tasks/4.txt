@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CubeController : MonoBehaviour
+{
+    // Variables for Cube properties
+    public int cubeWidth = 2;  // Width of the cube
+    public int cubeHeight = 3; // Height of the cube
+    public float rotationSpeed = 50f; // Rotation speed
+    public Color cubeColor = Color.blue; // Cube color
+    public Vector3 initialPosition = new Vector3(0, 1, 0); // Initial position
+
+    void Start()
+    {
+        // Set the size of the cube
+        transform.localScale = new Vector3(cubeWidth, cubeHeight, cubeWidth);
+
+        // Set the initial position of the cube
+        transform.position = initialPosition;
+
+        // Change the cube's color
+        Renderer cubeRenderer = GetComponent<Renderer>();
+        if (cubeRenderer != null)
+        {
+            cubeRenderer.material.color = cubeColor;
+        }
+    }
+
+    void Update()
+    {
+        // Rotate the cube around its Y-axis
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+    }
+}
+
+
+(تسک ۴)
