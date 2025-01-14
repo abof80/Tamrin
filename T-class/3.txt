@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    public GameObject tilePrefab;
+    public int rows=2;
+    public int columns=5;
+    private GameObject[,] grid;
+    // Start is called before the first frame update
+    void Start()
+    {
+        grid = new GameObject[rows,columns];
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<columns;j++)
+            {
+                GameObject tile=Instantiate(tilePrefab,new Vector3(j,0,-i),Quaternion.identity);
+                tile.name=$"Tile ({i},{j})";
+                tile.GetComponent<Renderer>().material.color=Color.white;
+                grid[i,j]=tile;
+            }
+        }
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray,out RaycastHit hit))
+            {
+                GameObject clickedTile=hit.collider.gameObject;
+                clickedTile.GetComponent<Renderer>().material.color=Color.red;
+                Debug.Log("Clicked on:"+clickedTile.name);
+            }
+        }
+    }
+    public void ToggleTile(int row, int column, bool isActive)
+    {
+        if(row>=0 && row < rows && column >=0 && column < columns)
+        {
+            grid[row,column].SetActive(isActive);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid tile coordinates!");
+        }
+    }
+}

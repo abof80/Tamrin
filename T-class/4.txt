@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        int[][] playerScores = new int [3][];
+        playerScores[0]= new int[] {100,200,150};
+        playerScores[1]= new int[] {300,250};
+        playerScores[2]= new int[] {50,100,75,125};
+        for(int i=0;i<playerScores.Length;i++)
+        {
+            int totalScore=0;
+            for(int j=0;j<playerScores[i].Length;j++)
+            {
+                totalScore += playerScores[i][j]; 
+            }
+            Debug.Log("Total player points"+ (i+1)+ ":" + totalScore);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    private Queue<string> customerRequests = new Queue<string>();
+    // Start is called before the first frame update
+    void Start()
+    {
+        customerRequests.Enqueue("Purchase game coins");
+        customerRequests.Enqueue("Request technical");
+        customerRequests.Enqueue("Level up technical support");
+        customerRequests.Enqueue("Claim daily reward");
+        customerRequests.Enqueue("Unlock new stages");
+        Debug.Log(" Processing customer requests ");
+        
+        while (customerRequests.Count>0)
+        {
+            Debug.Log("Remaining requests:"+ customerRequests.Count);
+            string customerRequest = customerRequests.Dequeue();
+            Debug.Log("Processing:"+ customerRequest);
+        }
+        Debug.Log("All requests have been processed!!");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
